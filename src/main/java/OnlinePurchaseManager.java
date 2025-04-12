@@ -11,13 +11,13 @@ public class OnlinePurchaseManager
   */
   public int countElectronicsByMaker(String maker)
   {
-    int sum=0;
-    for(int i=0;i<purchases.size();i++){
-    if(purchases.get(i).isElectric()&&purchases.get(i).getMaker().equals(maker)){
-    sum++;
-    }
-    }
-    return sum;
+    int matches = 0;
+
+    for(Gizmo g : purchases)
+        if(g.isElectronic() && g.getMaker().equals(maker))
+            matches++;
+
+    return matches;
   
   }
   
@@ -26,14 +26,10 @@ public class OnlinePurchaseManager
   */
   public boolean hasAdjacentEqualPair()
   {
-    if(purchases.size()<2){
-    return false;
-    }
-    for(int i=0;i<purchases.size()-1;i++){
-    if(purchases.get(i).equals(purchases.get(i+1){
-    return true;
-    }
-    }
+     for(int i = 1; i < purchases.size(); i++)
+        if(purchases.get(i - 1).equals(purchases.get(i)))
+            return true;
+
     return false;
   }
   public OnlinePurchaseManager()
